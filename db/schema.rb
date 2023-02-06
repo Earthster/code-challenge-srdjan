@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_30_184302) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_093822) do
   create_table "cycles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "public_status", default: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.integer "cycle_id", null: false
+    t.string "invitee_name"
+    t.string "email", null: false
+    t.text "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cycle_id"], name: "index_invitations_on_cycle_id"
   end
 
 end

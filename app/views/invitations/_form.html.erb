@@ -1,0 +1,34 @@
+<%= form_with(model: @invitation, class: "simple_form") do |form| %>
+  <% if @invitation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@invitation.errors.count, "error") %> prohibited this invitation from being saved:</h2>
+
+      <ul>
+        <% @invitation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="modal_border">
+    <%= form.label :invitee_data, 'Share cycle with a new customer' %>
+    <%= form.text_field :invitee_data, placeholder: 'Email Addresses...*' %>
+  </div>
+  <div class="modal_border">
+    <%= form.label :message, 'Want to include a message with the invite?'%>
+    <%= form.text_field :message, placeholder: 'Please enter your message' %>
+  </div>
+  <div class="modal_border text_size">
+    You are about to share with the individuals above:
+    <ul>
+      <li>Core Structure Assembly</li>
+    </ul> 
+  </div>
+  <%= form.hidden_field :cycle_id, value: @invitation.cycle_id %>
+
+
+  <div class="modal_submit">
+    <%= form.submit 'SEND INVITATION' %>
+  </div>
+<% end %>
